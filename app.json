@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Ocorrencias",
+    "slug": "Cirsope_Ocorrencias",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "version": "3.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/logo1.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.cirsope.Ocorrencias",
+      "versionCode": 3,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCId7luXPPRPJCDIuAk0j-D8ZCKRLYTZCc"
+        }
+      }
+    },
+    "description": ""
+  }
+}
