@@ -9,7 +9,7 @@ import api from '../services/api'
 export default function Ocurrances({ navigation }) {
     const [description, setDescription] = useState('')
     const [loader, setLoader] = useState(false);
-    const [category, setCategory] = useState({}) 
+    const [category, setCategory] = useState('') 
     let photo;
     let location = {
         location
@@ -64,7 +64,7 @@ export default function Ocurrances({ navigation }) {
             formdata.append('lat', latitude);
             formdata.append('lng', longitude);
             formdata.append('description', description);
-            formdata.append('type', category.category);
+            formdata.append('type', category);
             try {
                 let result = await api.post('/ocurrance',
                     formdata,
@@ -102,7 +102,7 @@ export default function Ocurrances({ navigation }) {
     };
 
     const valueChange = (itemValue, itemIndex) => {
-        setCategory({ category: itemValue })
+        setCategory(itemValue)
         console.log(category)
     }
 
@@ -154,7 +154,7 @@ export default function Ocurrances({ navigation }) {
             </Text>
             <View style={styles.customPicker}>
                 <Picker
-                    selectedValue={category.category}
+                    selectedValue={category}
                     onValueChange={valueChange}
                 >
                     <Picker.Item label="Descate irregular de lixo" value="Descarte irregular de lixo" />

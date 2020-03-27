@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Text, TouchableOpacity, View, AsyncStorage, StyleSheet, Dimensions } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
 import Estilos from '../../assets/Estilos'
 import api from '../services/api'
 
@@ -13,10 +14,17 @@ export default class Map extends Component {
     longitude: -51.408102,
     ownLocation: {},
     markers: [],
-    
+
+
   }
 
   async componentDidMount() {   //invocado imediatamente apos a construcao do componente 
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
     let location = await Location.getCurrentPositionAsync({});
     await this.setState({
       region: {
@@ -58,9 +66,9 @@ export default class Map extends Component {
     }
   }
 
-  
+
   render() {
-    let date, dia,mes,ano;
+    let date, dia, mes, ano;
     return (
       <View style={Estilos.container}>
         <MapView style={Estilos.map} showsMyLocationButton={true} showsUserLocation={true}
@@ -76,7 +84,7 @@ export default class Map extends Component {
                 longitude: marker.lng,
               }}
             >
-             
+
               <Callout style={styles.callOutView} >
                 <Text style={styles.label}>Tipo da ocorrência : </Text>
                 <Text>{marker.type}</Text>
@@ -153,10 +161,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
   },
-  label:{
-     fontWeight: 'bold', 
-     fontSize: 14, 
-     backgroundColor: 'transparent'
+  label: {
+    fontWeight: 'bold',
+    fontSize: 14,
+    backgroundColor: 'transparent'
   },
   callOutView: {
     flexDirection: "column",
@@ -172,6 +180,6 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#4286f4',
     width: width - 250,
-    height:50
+    height: 50
   }
 })

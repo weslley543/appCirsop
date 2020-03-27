@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Alert, TouchableOpacity, Text, Picker, AsyncStorage } from 'react-native';
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import { View, ScrollView,SafeAreaView ,StyleSheet, Alert, TouchableOpacity, ActivityIndicator, Text, Picker, AsyncStorage, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import api from '../services/api';
 export default function TrashTime({ navigation }) {
     const [city, setCity] = useState('')
     const [options, setOptions] = useState([])
-
+    const [loader, setLoader] = useState(false);
+    const [cityHours, setCityHours] = useState([]);
     const handleViewOcurrances = () => {
         navigation.navigate('ViewOcurrance')
     }
@@ -33,12 +33,20 @@ export default function TrashTime({ navigation }) {
         getCities();
     }, [])
 
-    const loadTrashTruckTimeIn = async () => {
-        let result = await api.get(`/loadtrashtimein/${city}`, {
-            headers: {
-                Authorization: `Bearer ${await AsyncStorage.getItem('token')}`
-            }
-        })
+    let itensReturn = ({ item }) => {
+        console.log(item)
+        return (
+            <View style={styles.item}>
+                <Text style={styles.label}>{item.neighborhood}</Text>
+                <Text style={styles.label}>{item.estimatedTime}</Text>
+            </View>
+        );
+    }
+    const getHeader = ()=>{
+        return (<View style={styles.item}>
+             <Text style={styles.tableHeading}>Vila</Text>
+             <Text style={styles.tableHeading}>Horário previsto</Text>
+        </View>);
     }
     function loadServices() {
         let serviceItems = options.map((option, index) => {
@@ -49,15 +57,22 @@ export default function TrashTime({ navigation }) {
     }
     let valueChange = async (itemValue, itemIndex) => {
         setCity(itemValue)
-        
-        let result = await api.get(`/trashtimein/${itemValue}`,
-            {
-                headers: {
-                    Authorization : `Bearer ${await AsyncStorage.getItem('token')}`
+        setLoader(true);
+        try {
+            let result = await api.get(`/trashtimein/${itemValue}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${await AsyncStorage.getItem('token')}`
+                    }
                 }
-            }
-        )
-        console.log(JSON.parse(result.request._response));
+            )
+            setLoader(false)
+            setCityHours(JSON.parse(result.request._response))
+        } catch (e) {
+            Alert.alert('ATENÇÃO',
+                'Ocorreu um erro ao pegar os dados !! Verifique sua conexão')
+            setLoader(false)
+        }
     }
     return (
         <View style={styles.container}>
@@ -77,6 +92,18 @@ export default function TrashTime({ navigation }) {
                     loadServices()
                 }
             </Picker>
+            {(loader) ? (<ActivityIndicator size="large" color="#4286f4" />) :
+                
+                  
+                    <FlatList
+                        data={cityHours}
+                        renderItem={itensReturn}
+                        keyExtractor={(item, index) => index}
+                        ListHeaderComponent={getHeader}
+
+                    />
+                
+            }
         </View>
     )
 }
@@ -106,5 +133,16 @@ const styles = StyleSheet.create({
     label: {
         textAlign: "center",
         fontSize: 15
+    },
+    tableHeading:{
+        textAlign: "center",
+        fontSize: 17,
+        fontWeight: 'bold'
+    },
+    item:{
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignContent:'flex-start'
     }
 })
