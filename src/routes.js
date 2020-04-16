@@ -1,26 +1,23 @@
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import React from 'react'
 
-
-import Login from './pages/Login';
-import ViewOcurrance from './pages/ViewOcurrance'
-import Ocurrances from './pages/Ocurrances'
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
+import Login from './pages/Login'
 import Register from './pages/Register'
-import TrashTime from './pages/TrashTime'
+import AppRoutes from './pages/routes/app.routes'
+import Ocurrance from './pages/Ocurrances'
 
-const switchNav = createSwitchNavigator({
-    Login,
-    ViewOcurrance,
-    Ocurrances,
-    Register,
-    TrashTime
-});
-
-const Routes = createAppContainer(
-    switchNav
-    
-);
-
-
-
-export default Routes;
+export default function Routes() {
+    return (
+            <Stack.Navigator initialRouteName='Login'>
+                <Stack.Screen name='Login' component={Login} />
+                <Stack.Screen
+                 name='Registre-se' 
+                 component={Register} 
+                 options={{}}/>
+                <Stack.Screen name='Mapa das Ocorrências' component={AppRoutes} />
+                
+                
+            </Stack.Navigator>
+    );
+}

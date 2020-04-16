@@ -8,14 +8,6 @@ export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoad] = useState(false);
-    // useEffect(() => {
-    //     AsyncStorage.getItem('user').then(user => {
-    //         if (user) {
-    //             navigation.navigate('ViewOcurrance')
-    //         }
-    //     })
-    // }, [])
-
     async function handleSubmit() {
         setLoad(true);
         try {
@@ -29,12 +21,11 @@ export default function Login({ navigation }) {
 
             if (response.status === 200) {
                 setLoad(false);
-                
                 const { id } = response.data;
                 const { token } = response.data
                 await AsyncStorage.setItem('user', id);
                 await AsyncStorage.setItem('token', token);
-                navigation.navigate('ViewOcurrance');
+                navigation.navigate('Mapa das Ocorrências');
                 
                 
             } else {
@@ -49,7 +40,7 @@ export default function Login({ navigation }) {
             }   
     }
     let handleRegister = ()=>{
-        navigation.navigate('Register');
+        navigation.navigate('Registre-se');
     }
     return (
 

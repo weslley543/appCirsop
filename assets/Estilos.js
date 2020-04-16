@@ -1,31 +1,31 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native'
 
 export default StyleSheet.create({
-    container:{
+    container: {
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'flex-end'
-    
-    
+
+
     },
-    dados:{
+    dados: {
         color: '#000',
         fontSize: 15
     },
-    title:{
+    title: {
         fontSize: 20,
         marginTop: Platform.OS === 'ios' ? 30 : 10,
         fontWeight: 'bold'
     },
-    imageContainer:{
+    imageContainer: {
         width: '90%',
-        height: Dimensions.get('window').width * 3 /4,
+        height: Dimensions.get('window').width * 3 / 4,
         backgroundColor: '#EEE',
         marginTop: 10
     },
-    image:{
+    image: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').width * 3 /4,
+        height: Dimensions.get('window').width * 3 / 4,
         resizeMode: 'center'
     },
     buttom: {
@@ -39,26 +39,26 @@ export default StyleSheet.create({
         padding: 10,
         backgroundColor: '#4286f4'
     },
-    buttomDelete:{
+    buttomDelete: {
         marginTop: 15,
         marginRight: 25,
         padding: 10,
         borderRadius: 50,
         backgroundColor: '#FF0000'
     },
-    buttomAtualizarMapa:{
+    buttomAtualizarMapa: {
         padding: 10,
         borderRadius: 50,
         backgroundColor: '#4286f4',
-        marginLeft:5,
-        marginTop :15,
-        width:50
+        marginLeft: 5,
+        marginTop: 15,
+        width: 50
     },
-    Text:{
+    Text: {
         fontSize: 17,
         color: '#FFF'
     },
-    input:{
+    input: {
         marginTop: 10,
         marginBottom: 10,
         width: '90%',
@@ -83,12 +83,12 @@ export default StyleSheet.create({
     },
     map: {
         position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
     },
-    legenda:{
+    legenda: {
         fontSize: 20,
         fontWeight: "bold",
         marginBottom: 10,
@@ -101,24 +101,24 @@ export default StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0
-      },
+    },
     infoView: {
         backgroundColor: '#FFF',
-        display: 'flex', 
-        borderRadius: 20, 
+        display: 'flex',
+        borderRadius: 20,
         alignItems: 'center'
     },
-    mapaFoto:{
-        width: 250, 
+    mapaFoto: {
+        width: 250,
         height: 250,
         margin: 10,
-        resizeMode:"contain"
+        resizeMode: "contain"
     },
     infoCallOut: {
         backgroundColor: '#FFA500',
         borderRadius: 10
     },
-    formulario:{
+    formulario: {
         marginTop: 5,
         marginBottom: 5,
     },
@@ -127,149 +127,149 @@ export default StyleSheet.create({
         marginBottom: 10,
         width: '100%'
     },
-    perguntaText:{
+    perguntaText: {
         fontSize: 20,
         marginLeft: 20,
-        marginBottom:5,
+        marginBottom: 5,
         color: '#000',
     },
-    botoesView:{
-        display:'flex', 
-        flexDirection:'column',
+    botoesView: {
+        display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center'
     },
-    botoes:{
-        display:'flex',
+    botoes: {
+        display: 'flex',
         fontSize: 17,
         display: 'flex',
         flexDirection: 'row'
     },
-    dadosMag:{
+    dadosMag: {
         marginTop: 10,
     },
-    dadosPrincipal:{
+    dadosPrincipal: {
         padding: 15,
     },
-    dadosCard:{
-        padding:  15,
+    dadosCard: {
+        padding: 15,
         borderColor: '#FFAE40',
         borderWidth: 2,
         borderRadius: 10,
         marginBottom: 30,
     },
-    dadosTexto:{
+    dadosTexto: {
         color: '#000',
         fontSize: 14,
         marginBottom: 5,
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
-    dadosInfo:{
+    dadosInfo: {
         color: '#000',
         fontSize: 14,
         marginBottom: 5
     },
-    dadosViewTexto:{
-        display:'flex',
-        flexDirection:'row'
+    dadosViewTexto: {
+        display: 'flex',
+        flexDirection: 'row'
     },
-    dadosImagem:{
+    dadosImagem: {
         width: 150,
         height: 200,
         borderRadius: 10,
     },
-    viewImagem:{
+    viewImagem: {
         marginBottom: 15,
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center'
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    dadosBotoes:{
-        display:'flex',
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center'
+    dadosBotoes: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    dadosAtualizar:{
+    dadosAtualizar: {
         display: 'flex',
         flexDirection: 'row-reverse',
         marginBottom: 15,
     },
-    NenhumItemSalvo:{
+    NenhumItemSalvo: {
         fontSize: 20,
         fontWeight: 'bold'
     },
-    MensagemNenhumItemSalvo:{
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center',
+    MensagemNenhumItemSalvo: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         marginBottom: 40,
         marginTop: 80
     },
-    viewMapa:{
-        display:'flex',
-        flexDirection:'row',
+    viewMapa: {
+        display: 'flex',
+        flexDirection: 'row',
         paddingTop: 20,
         paddingLeft: 20
     },
-    loginBotaoGoogle:{
+    loginBotaoGoogle: {
         marginTop: 50,
-        width: 200, 
+        width: 200,
         height: 50
     },
-    loginView:{
-        display:'flex',
+    loginView: {
+        display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems:'center',
-        flex:1,
-        backgroundColor:"#fff"
+        alignItems: 'center',
+        flex: 1,
+        backgroundColor: "#fff"
     },
-    loginTitulo:{
+    loginTitulo: {
         fontSize: 25,
         color: 'black',
     },
-    loginImagemUsuario:{
+    loginImagemUsuario: {
         width: 200,
         height: 200,
         borderRadius: 100
     },
-    loginViewImagemUsuario:{
+    loginViewImagemUsuario: {
         display: 'flex',
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'center',
-        paddingTop:20,
-        paddingBottom:20
+        paddingTop: 20,
+        paddingBottom: 20
     },
-    loginNomeUsuario:{
+    loginNomeUsuario: {
         fontSize: 25,
         color: 'black',
         fontWeight: 'bold'
     },
-    loginEmailUsuario:{
+    loginEmailUsuario: {
         fontSize: 20
     },
-    loginViewInformacaoUsuario:{
+    loginViewInformacaoUsuario: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         marginBottom: 50,
     },
-    viewFundoDadosUsuario:{
+    viewFundoDadosUsuario: {
         height: "100%",
         backgroundColor: 'white'
     },
-    viewDadosUsuario:{
+    viewDadosUsuario: {
         backgroundColor: 'white'
     },
-    loginBotaoSair:{
+    loginBotaoSair: {
         paddingLeft: 15,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center'
     },
-    loginTextoSair:{
+    loginTextoSair: {
         paddingLeft: 5,
         fontSize: 15,
         fontWeight: 'bold',
@@ -278,37 +278,37 @@ export default StyleSheet.create({
 
     list: {
         paddingHorizontal: 20,
-      },
+    },
 
     listItem: {
-    backgroundColor: '#EEE',
-    marginTop: 20,
-    padding: 30,
+        backgroundColor: '#EEE',
+        marginTop: 20,
+        padding: 30,
     },
 
-    flat:{
+    flat: {
         marginBottom: 30
     },
 
-    footerGaleria:{
+    footerGaleria: {
         marginBottom: 30
     },
 
-    headerGaleria:{
-        display:'flex',
-        flexDirection:'row',
-        
-        marginBottom:5,
-        marginLeft:10,
-        marginTop:10,
-        
-        justifyContent:'space-between',
-        alignItems:'center',
-        backgroundColor:"#fff"
+    headerGaleria: {
+        display: 'flex',
+        flexDirection: 'row',
+
+        marginBottom: 5,
+        marginLeft: 10,
+        marginTop: 10,
+
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: "#fff"
     },
 
-    tituloHeaderDadosSalvos:{
-        fontSize:50,
-        fontWeight:'bold'
+    tituloHeaderDadosSalvos: {
+        fontSize: 50,
+        fontWeight: 'bold'
     }
 })

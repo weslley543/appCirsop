@@ -38,13 +38,7 @@ export default function Register({ navigation }) {
     }
     return (
         <View style={styles.container}>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.buttom} onPress={handleBack}>
-                    <Icon name='arrow-left'  size={25} color={'white'} />
-                </TouchableOpacity>
-            </View>
             <KeyboardAvoidingView style={{ marginVertical: 65 }} behavior="padding" enabled={Platform.OS}>
-                <Text style={styles.header}>Cadastro</Text>
                 <Text style={styles.label}>Seu Nome</Text>
                 <TextInput style={styles.input}
                     placeholder="Seu Nome "

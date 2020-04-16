@@ -915,6 +915,14 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@callstack/react-theme-provider@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@callstack/react-theme-provider/-/react-theme-provider-3.0.5.tgz#a173e455e9603c9c45357a3b6ace1273086527ca"
+  integrity sha512-Iec+ybWN0FvNj87sD3oWo/49edGUP0UOSdMnzCJEFJIDYr992ECIuOV89burAAh2/ibPCxgLiK6dmgv2mO/8Tg==
+  dependencies:
+    deepmerge "^3.2.0"
+    hoist-non-react-statics "^3.3.0"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -1173,13 +1181,18 @@
     shortid "^2.2.15"
     use-subscription "^1.4.0"
 
-"@react-navigation/drawer@^5.0.7":
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/@react-navigation/drawer/-/drawer-5.3.3.tgz#c24e72f5ed81231adefc0d22c0fa43ae83bb61c5"
-  integrity sha512-ZXY+taFv2KIdDly9yeGRcUvT+GPskPOqjzL6kuWh7DtElWzSvU4hHAQICn6D/Zg0V4jFNdLYfh8w9oYDu2T0zA==
+"@react-navigation/drawer@^5.4.1":
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/@react-navigation/drawer/-/drawer-5.4.1.tgz#381bed18422b75f5e2c69455a85390564e6d3584"
+  integrity sha512-5w8wjg+Cp1HcNHSwpYtOJMDHHODKGLjpiSrDvWlCXs4OX2ifPeBPiR4AaEXHkyNDhsikHMe6E5WW6Dn7GPzU9w==
   dependencies:
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
+
+"@react-navigation/material-bottom-tabs@^5.1.6":
+  version "5.1.6"
+  resolved "https://registry.yarnpkg.com/@react-navigation/material-bottom-tabs/-/material-bottom-tabs-5.1.6.tgz#dbaa7e180b8bafca08c09d828700ca9b31082ab9"
+  integrity sha512-m2WdHHx82IEOsPJJWHgOM7+70BEuvGb8GzL15/5lwdR1pjWEMGZIB/fD2thSEe1edqjryhwOh99Kq8lBAee/IA==
 
 "@react-navigation/native@^3.7.7":
   version "3.7.7"
@@ -1202,6 +1215,14 @@
   integrity sha512-6oM0gd/0LUVVb8DejN2tYxKgY+h9HJEprVO1Q3jXe7Kc2V2J6WAmXU4dCMXKB9Vltt9zXAufsjVVJ/DDFr587A==
   dependencies:
     shortid "^2.2.15"
+
+"@react-navigation/stack@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.2.8.tgz#5011839bc134e4960c7e07dc3550f5d77618af11"
+  integrity sha512-LTtsl3CyEVPWmgjRA17hwrP9XUQzVRalg7BLroBfI/S6VUc0VGD9Qajt24qqisMoGCXBy+9GKI0wnjuuFSqBYg==
+  dependencies:
+    color "^3.1.2"
+    react-native-iphone-x-helper "^1.2.1"
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
@@ -2985,7 +3006,7 @@ hermes-engine@^0.2.1:
   resolved "https://registry.yarnpkg.com/hermes-engine/-/hermes-engine-0.2.1.tgz#25c0f1ff852512a92cb5c5cc47cf967e1e722ea2"
   integrity sha512-eNHUQHuadDMJARpaqvlCZoK/Nitpj6oywq3vQ3wCwEsww5morX34mW5PmKWQTO7aU0ck0hgulxR+EVDlXygGxQ==
 
-hoist-non-react-statics@3.x.x, hoist-non-react-statics@^3.3.2:
+hoist-non-react-statics@3.x.x, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -4693,6 +4714,15 @@ react-native-navigation@^6.3.1:
     react-lifecycles-compat "2.0.0"
     tslib "1.9.3"
 
+react-native-paper@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.6.0.tgz#9f8452387bc6e6dae84db90c9c4715af5c7bd142"
+  integrity sha512-amsZpN8vUJIGBiHMf1sQm0dtJMUhNFAPkXkt/9XMR1mKneEUfWGIap1KBZdOHLIVp1iACigpV8g9R3j+MaxWOg==
+  dependencies:
+    "@callstack/react-theme-provider" "^3.0.5"
+    color "^3.1.2"
+    react-native-safe-area-view "^0.14.6"
+
 react-native-reanimated@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.4.0.tgz#7f1acbf9be08492d834f512700570978052be2f9"
@@ -4703,7 +4733,7 @@ react-native-safe-area-context@0.6.0:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-0.6.0.tgz#f53f5a5bcafb462a8798a26b145e68946389ad60"
   integrity sha512-blY0akr3ZLTuZFdUotmjV+7LVXpBnd5CGFlNhTiarNNGJoHu79K42IJpUpmtg75iC9aWbSW7QHstlP0xz11V0A==
 
-react-native-safe-area-view@^0.14.8:
+react-native-safe-area-view@^0.14.6, react-native-safe-area-view@^0.14.8:
   version "0.14.8"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.14.8.tgz#ef33c46ff8164ae77acad48c3039ec9c34873e5b"
   integrity sha512-MtRSIcZNstxv87Jet+UsPhEd1tpGe8cVskDXlP657x6rHpSrbrc+y13ZNXrwAgGNNhqQNX7UJT68ZIq//ZRmvw==

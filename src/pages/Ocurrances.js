@@ -2,23 +2,18 @@ import React, { useState } from 'react';
 import { View, AsyncStorage, Dimensions, StyleSheet, Text, Picker, ActivityIndicator, TextInput, Alert, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import logo from '../../assets/weslle.svg'
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import api from '../services/api'
-export default function Ocurrances({ navigation }) {
+export default function Ocurrances() {
     const [description, setDescription] = useState('')
     const [loader, setLoader] = useState(false);
-    const [category, setCategory] = useState('') 
+    const [category, setCategory] = useState('Descarte irregular de lixo')
     let photo;
     let location = {
         location
     }
-    
 
-    const handleViewOcurrances = () => {
-        navigation.navigate('ViewOcurrance');
-    }
     let chooseMethodToSendImage = async () => {
         Alert.alert(
             'ATENÇÃO',
@@ -48,23 +43,36 @@ export default function Ocurrances({ navigation }) {
         //     });
         // }
 
-        // let location = await Location.getCurrentPositionAsync({});
-
-
-
-
-
-        const latitude = parseFloat(await AsyncStorage.getItem('lat'));
-        const longitude = parseFloat(await AsyncStorage.getItem('lng'));
-
+        let location;
+        const latitude = await AsyncStorage.getItem('lat');
+        const longitude = await AsyncStorage.getItem('lng');
+        if(latitude === null && longitude === null){
+            const aux = await Location.getCurrentPositionAsync({})
+            location =
+            { 
+                latitude : aux.coords.latitude,
+                longitude : aux.coords.longitude
+            }
+        }else{
+            
+            location = 
+            {
+                latitude,
+                longitude  
+            }
+            await AsyncStorage.removeItem('lat');
+            await AsyncStorage.removeItem('lng');
+        }
+        console.log(location);
         if (photo !== undefined) {
             setLoader(true);
             let formdata = new FormData();
             formdata.append('img', { type: "image/jpeg", name: 'ocurance.jpg', uri: photo.uri });
-            formdata.append('lat', latitude);
-            formdata.append('lng', longitude);
+            formdata.append('lat', location.latitude);
+            formdata.append('lng', location.longitude);
             formdata.append('description', description);
             formdata.append('type', category);
+            console.log(formdata);
             try {
                 let result = await api.post('/ocurrance',
                     formdata,
@@ -77,19 +85,21 @@ export default function Ocurrances({ navigation }) {
                         }
                     }
                 )
+                console.log(result);
                 if (result.status === 200) {
-                    Alert.alert('Sua imagem foi enviada');
+                    Alert.alert('Sua imagem foi enviada', 'Será enviado um protocolo no seu email para que você possa acompanhar a resolução do problema');
                     setDescription('');
                     setLoader(false);
                 } else {
-                    Alert.alert('Erro ao enviar imagem');
+                    Alert.alert('Erro ao enviar imagem', 'Verifique sua conexão com a internet');
                     setDescription('');
                     setLoader(false);
                 }
 
             } catch (err) {
+                console.log(err);
                 Alert.alert('ERRO',
-                'Ocorreu um erro ao enviar');
+                    'Ocorreu um erro ao enviar');
                 setLoader(false);
             }
         } else {
@@ -143,9 +153,6 @@ export default function Ocurrances({ navigation }) {
     return (
 
         <View style={styles.container}>
-            <TouchableOpacity onPress={handleViewOcurrances} style={styles.button}>
-                <Icon name='arrow-left' size={25} color={'white'} />
-            </TouchableOpacity>
             <Text style={styles.header}>
                 Formulário de Ocorrência
             </Text>
@@ -192,13 +199,13 @@ export default function Ocurrances({ navigation }) {
                             </TouchableOpacity>
                         </View>)
                 }
-
-
             </View>
 
 
             
         </View>
+        
+        
     );
 }
 const { height, width } = Dimensions.get('window');

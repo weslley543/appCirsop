@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { View, ScrollView,SafeAreaView ,StyleSheet, Alert, TouchableOpacity, ActivityIndicator, Text, Picker, AsyncStorage, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import api from '../services/api';
-export default function TrashTime({ navigation }) {
+export default function TrashTime() {
     const [city, setCity] = useState('')
     const [options, setOptions] = useState([])
     const [loader, setLoader] = useState(false);
     const [cityHours, setCityHours] = useState([]);
-    const handleViewOcurrances = () => {
-        navigation.navigate('ViewOcurrance')
-    }
 
     useEffect(() => {
         async function getCities() {
@@ -34,7 +31,6 @@ export default function TrashTime({ navigation }) {
     }, [])
 
     let itensReturn = ({ item }) => {
-        console.log(item)
         return (
             <View style={styles.item}>
                 <Text style={styles.label}>{item.neighborhood}</Text>
@@ -76,9 +72,6 @@ export default function TrashTime({ navigation }) {
     }
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={handleViewOcurrances} style={styles.button}>
-                <Icon name='arrow-left' size={25} color={'white'} />
-            </TouchableOpacity>
 
             <Text style={styles.header}>Horários da coleta do lixo</Text>
 
