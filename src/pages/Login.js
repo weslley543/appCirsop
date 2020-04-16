@@ -36,7 +36,7 @@ export default function Login({ navigation }) {
         } catch (err) {
              setLoad(false);
              Alert.alert('Ocorreu um erro no seu login, verifique sua senha ou usuário !!');
-                console.log(err);
+                
             }   
     }
     let handleRegister = ()=>{

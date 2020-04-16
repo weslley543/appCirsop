@@ -111,7 +111,7 @@ export default function Map({ navigation }) {
           title= 'Sua localização'
         />
         <View style={styles.place}>
-
+          <Text style={styles.label}>Latitude</Text>
         </View>
       </MapView>
 

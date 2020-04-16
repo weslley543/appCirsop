@@ -97,7 +97,7 @@ export default function Ocurrances() {
                 }
 
             } catch (err) {
-                console.log(err);
+                
                 Alert.alert('ERRO',
                     'Ocorreu um erro ao enviar');
                 setLoader(false);
