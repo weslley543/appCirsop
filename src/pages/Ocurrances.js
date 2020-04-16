@@ -63,7 +63,7 @@ export default function Ocurrances() {
             await AsyncStorage.removeItem('lat');
             await AsyncStorage.removeItem('lng');
         }
-        console.log(location);
+        
         if (photo !== undefined) {
             setLoader(true);
             let formdata = new FormData();
@@ -72,7 +72,7 @@ export default function Ocurrances() {
             formdata.append('lng', location.longitude);
             formdata.append('description', description);
             formdata.append('type', category);
-            console.log(formdata);
+           
             try {
                 let result = await api.post('/ocurrance',
                     formdata,
@@ -85,7 +85,7 @@ export default function Ocurrances() {
                         }
                     }
                 )
-                console.log(result);
+                
                 if (result.status === 200) {
                     Alert.alert('Sua imagem foi enviada', 'Será enviado um protocolo no seu email para que você possa acompanhar a resolução do problema');
                     setDescription('');
@@ -113,7 +113,7 @@ export default function Ocurrances() {
 
     const valueChange = (itemValue, itemIndex) => {
         setCategory(itemValue)
-        console.log(category)
+        
     }
 
     let openImagePickerAsync = async () => {
@@ -129,7 +129,7 @@ export default function Ocurrances() {
             aspect: [4, 5],
             allowsMultipleSelection: true,
         });
-        console.log(pickerResult);
+        
     }
     let PhotoFromCamera = async () => {
         let PermissionResultCamera = await ImagePicker.requestCameraPermissionsAsync({
@@ -145,7 +145,7 @@ export default function Ocurrances() {
         let pickerResult = await ImagePicker.launchCameraAsync();
         if (!pickerResult.cancelled) {
             photo = pickerResult;
-            console.log(photo);
+            
         }
 
     }

@@ -10,7 +10,7 @@ import api from '../services/api'
 
 export default function Map({ navigation }) {
   const [region, setInitialRegion] = useState();
-  const [ownLocation, setOwnLocation] = useState({});
+  const [ownLocation, setOwnLocation] = useState();
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Map({ navigation }) {
 
       let location = await Location.getCurrentPositionAsync({});
 
-      setInitialRegion(
+      await setInitialRegion(
         {
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
@@ -32,13 +32,13 @@ export default function Map({ navigation }) {
           longitudeDelta: 0.0231
         }
       );
-      setOwnLocation(
+     await setOwnLocation(
         {
           latitude: location.coords.latitude,
           longitude: location.coords.longitude
         }
       );
-      console.log(ownLocation);
+      
     }
     async function loadMarkers() {
       try {
@@ -101,6 +101,18 @@ export default function Map({ navigation }) {
 
           renderMarkers()
         }
+        <Marker
+          coordinate={{
+            latitude:ownLocation.latitude,
+            longitude:ownLocation.longitude
+          }}
+          pinColor= '#76ff03'
+          draggable
+          title= 'Sua localização'
+        />
+        <View style={styles.place}>
+
+        </View>
       </MapView>
 
     </View>
