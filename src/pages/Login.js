@@ -26,8 +26,8 @@ export default function Login({ navigation }) {
                 setLoad(false);
                 const { id } = response.data;
                 const { token } = response.data
-                await AsyncStorage.setItem('email', email);
-                await AsyncStorage.setItem('password', password);
+                await AsyncStorage.setItem('user', id);
+                await AsyncStorage.setItem('token', token);
                 navigation.navigate('Mapa das Ocorrências');
 
 
