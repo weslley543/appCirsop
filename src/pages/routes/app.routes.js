@@ -15,7 +15,7 @@ export default function BottomTab() {
             barStyle={{ backgroundColor: '#4286f4' }}>
             <Tab.Screen name='Mapa das Ocorrências' component={ViewOcurrances}
                 options={{
-                    tabBarLabel: 'Mapa das Ocorrências',
+                    
                     tabBarIcon: ({ color }) => (
                         <Icon name='map-marker' size={20} color={'#fafafa'} />
                     ),
@@ -24,7 +24,7 @@ export default function BottomTab() {
             />
             <Tab.Screen name='Enviar uma ocorrência' component={Ocurrances}
             options={{
-                tabBarLabel: 'Enviar uma ocorrência',
+                
                 tabBarIcon: ({ color }) => (
                     <Icon name='send' size={20} color={'#fafafa'} />
                 ),
@@ -32,9 +32,16 @@ export default function BottomTab() {
             />
             <Tab.Screen name='Hora do lixo' component={TrashTime} 
                 options={{
-                    tabBarLabel: 'Hora do lixo',
+                    
                     tabBarIcon: ({ color }) => (
                         <Icon name='clock' size={20} color={'#fafafa'} />
+                    ),
+                }}
+            />
+            <Tab.Screen name='Configurações' component={TrashTime} 
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <Icon name='settings' size={20} color={'#fafafa'} />
                     ),
                 }}
             />

@@ -10,7 +10,7 @@ import api from '../services/api'
 
 export default function Map({ navigation }) {
   const [region, setInitialRegion] = useState();
-  const [ownLocation, setOwnLocation] = useState();
+  const [ownLocation, setOwnLocation] = useState({latitude:-22.130723,longitude:-51.398810});
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
@@ -32,13 +32,12 @@ export default function Map({ navigation }) {
           longitudeDelta: 0.0231
         }
       );
-     await setOwnLocation(
-        {
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude
-        }
-      );
-      
+      await setOwnLocation({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude
+      })
+
+
     }
     async function loadMarkers() {
       try {
@@ -72,7 +71,7 @@ export default function Map({ navigation }) {
 
   function renderMarkers() {
     let marcador = markers.map((marker, index) => {
-      return (<Marker key={index} coordinate={{
+      return (<Marker key={marker.id} coordinate={{
         latitude: marker.lat,
         longitude: marker.lng,
       }} >
@@ -86,7 +85,37 @@ export default function Map({ navigation }) {
         </Callout>
       </Marker>);
     })
+    marcador.push(
+      <Marker
+      key={'Minha posição'}
+      coordinate={
+        {
+          latitude:ownLocation.latitude,
+          longitude:ownLocation.longitude
+        }
+        
+      }
+      pinColor={'#f301a4'}
+      title={'Sua localização'}
+      draggable
+      onDragEnd={(e)=>{setOwnLocation(
+        {
+          latitude:e.nativeEvent.coordinate.latitude,
+          longitude:e.nativeEvent.coordinate.longitude
+        
+        }
+        )}}
+      ></Marker>
+    )
     return marcador;
+
+  }
+
+  let sendLocation = async ()=>{
+    await AsyncStorage.setItem('lat', ownLocation.latitude.toString());
+    await AsyncStorage.setItem('lng', ownLocation.longitude.toString());
+    navigation.navigate('Enviar uma ocorrência');
+    console.log()
   }
 
   return (
@@ -101,20 +130,16 @@ export default function Map({ navigation }) {
 
           renderMarkers()
         }
-        <Marker
-          coordinate={{
-            latitude:ownLocation.latitude,
-            longitude:ownLocation.longitude
-          }}
-          pinColor= '#76ff03'
-          draggable
-          title= 'Sua localização'
-        />
-        <View style={styles.place}>
-          <Text style={styles.label}>Latitude</Text>
-        </View>
-      </MapView>
+       
 
+      </MapView>
+      <View style={styles.place}>
+        <Text style={styles.label}>Latitude : </Text><Text>{ownLocation.latitude}</Text>
+        <Text style={styles.label}>Longitude : </Text><Text>{ownLocation.longitude}</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={sendLocation}><Text style={{color:'#fafafa'}}>Utilizar essa localização</Text></TouchableOpacity>
+        </View>
+      </View>
     </View>
   )
 }
@@ -129,11 +154,11 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     padding: 20,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-start'
 
   },
   buttonContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-around",
   },
   label: {
@@ -154,7 +179,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
     padding: 10,
     backgroundColor: '#4286f4',
-    width: width - 40,
-    height: 50
+    width: width - 70,
+    height: 35
   }
 })

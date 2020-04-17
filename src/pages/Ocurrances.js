@@ -90,6 +90,7 @@ export default function Ocurrances() {
                     Alert.alert('Sua imagem foi enviada', 'Será enviado um protocolo no seu email para que você possa acompanhar a resolução do problema');
                     setDescription('');
                     setLoader(false);
+                    console.log(result);
                 } else {
                     Alert.alert('Erro ao enviar imagem', 'Verifique sua conexão com a internet');
                     setDescription('');

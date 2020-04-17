@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, AsyncStorage, Image, KeyboardAvoidingView, Platform,Alert, ActivityIndicator ,StyleSheet,TouchableOpacity, Text, TextInput, Button } from 'react-native';
+import { View, AsyncStorage, Image, KeyboardAvoidingView, Platform, Alert, ActivityIndicator, StyleSheet, TouchableOpacity, Text, TextInput, Button } from 'react-native';
 import logo from '../../assets/logo1.png'
 import api from '../services/api'
 
@@ -8,6 +8,9 @@ export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoad] = useState(false);
+
+   
+
     async function handleSubmit() {
         setLoad(true);
         try {
@@ -23,23 +26,23 @@ export default function Login({ navigation }) {
                 setLoad(false);
                 const { id } = response.data;
                 const { token } = response.data
-                await AsyncStorage.setItem('user', id);
-                await AsyncStorage.setItem('token', token);
+                await AsyncStorage.setItem('email', email);
+                await AsyncStorage.setItem('password', password);
                 navigation.navigate('Mapa das Ocorrências');
-                
-                
+
+
             } else {
                 setLoad(false);
                 Alert.alert('Ocorreu um erro no seu login, verifique sua senha ou usuário !!');
 
             }
         } catch (err) {
-             setLoad(false);
-             Alert.alert('Ocorreu um erro no seu login, verifique sua senha ou usuário !!');
-                
-            }   
+            setLoad(false);
+            Alert.alert('Ocorreu um erro no seu login, verifique sua senha ou usuário !!');
+
+        }
     }
-    let handleRegister = ()=>{
+    let handleRegister = () => {
         navigation.navigate('Registre-se');
     }
     return (
@@ -70,12 +73,12 @@ export default function Login({ navigation }) {
                 (loading === true) ? (<ActivityIndicator size="large" color="#4286f4" />) :
                     (<View>
                         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                            <Text style={{color:'white', fontSize:20, padding:2}}>Login </Text>
+                            <Text style={{ color: 'white', fontSize: 20, padding: 2 }}>Login </Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.transparentButton} onPress={handleRegister}>
-                        <Text style={{color: "#4286f4", fontSize:15, padding:2}}
-                        >
-                             Você ainda não é cadastrado ? Registre-se aqui !!
+                            <Text style={{ color: "#4286f4", fontSize: 15, padding: 2 }}
+                            >
+                                Você ainda não é cadastrado ? Registre-se aqui !!
                         </Text>
                         </TouchableOpacity>
 
@@ -90,7 +93,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignContent: 'center',
-        padding:10
+        padding: 10
     },
     image: {
         height: 150,
@@ -128,15 +131,15 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#4286f4'
     },
-    transparentButton:{
-        marginTop:15,
+    transparentButton: {
+        marginTop: 15,
         justifyContent: "center",
         alignItems: "center",
     },
-    AreaInput:{
-        flexDirection:'row',
+    AreaInput: {
+        flexDirection: 'row',
     },
-    
+
 
 
 });
