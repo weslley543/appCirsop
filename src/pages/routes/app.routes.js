@@ -12,7 +12,10 @@ export default function BottomTab() {
         <Tab.Navigator
             activeColor="#f0edf6"
             inactiveColor="#fafafa"
-            barStyle={{ backgroundColor: '#4286f4' }}>
+            barStyle={{ backgroundColor: '#4286f4' }}
+            headerMode="none"
+            >
+            
             <Tab.Screen name='Mapa das Ocorrências' component={ViewOcurrances}
                 options={{
                     
@@ -38,13 +41,7 @@ export default function BottomTab() {
                     ),
                 }}
             />
-            <Tab.Screen name='Configurações' component={TrashTime} 
-                options={{
-                    tabBarIcon: ({ color }) => (
-                        <Icon name='settings' size={20} color={'#fafafa'} />
-                    ),
-                }}
-            />
+            
         </Tab.Navigator>
        
     );

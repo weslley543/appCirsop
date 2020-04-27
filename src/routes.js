@@ -9,13 +9,15 @@ import Ocurrance from './pages/Ocurrances'
 
 export default function Routes() {
     return (
-            <Stack.Navigator initialRouteName='Login'>
+            <Stack.Navigator initialRouteName='Login' headerMode="float">
                 <Stack.Screen name='Login' component={Login} />
                 <Stack.Screen
                  name='Registre-se' 
                  component={Register} 
                  options={{}}/>
-                <Stack.Screen name='Mapa das Ocorrências' component={AppRoutes} />
+                <Stack.Screen name='Mapa das Ocorrências' navigationOptions={{header:null}} component={AppRoutes}
+                    options={{title:''}}
+                />
                 
                 
             </Stack.Navigator>

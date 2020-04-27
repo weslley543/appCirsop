@@ -1,13 +1,13 @@
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps'
 import React, { useState, useEffect } from 'react'
-import { Text, TouchableOpacity, View, AsyncStorage, StyleSheet, Dimensions } from 'react-native'
+import { Text, TouchableOpacity, View, AsyncStorage, StyleSheet, Dimensions, SafeAreaView } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import Estilos from '../../assets/Estilos'
 import api from '../services/api'
 
-
+import Driver from './components/Driver'
 export default function Map({ navigation }) {
   const [region, setInitialRegion] = useState();
   const [ownLocation, setOwnLocation] = useState({latitude:-22.130723,longitude:-51.398810});
@@ -120,7 +120,8 @@ export default function Map({ navigation }) {
 
   return (
 
-    <View style={Estilos.container}>
+    <SafeAreaView style={Estilos.container}>
+     
       <MapView style={Estilos.map} showsMyLocationButton={true} showsUserLocation={true}
         followsUserLocation={true} initialRegion={region} loadingEnabled={true}
         provider={PROVIDER_GOOGLE}
@@ -131,7 +132,7 @@ export default function Map({ navigation }) {
           renderMarkers()
         }
        
-
+        
       </MapView>
       <View style={styles.place}>
         <Text style={styles.label}>Latitude : </Text><Text>{ownLocation.latitude}</Text>
@@ -140,7 +141,7 @@ export default function Map({ navigation }) {
           <TouchableOpacity style={styles.button} onPress={sendLocation}><Text style={{color:'#fafafa'}}>Utilizar essa localização</Text></TouchableOpacity>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 

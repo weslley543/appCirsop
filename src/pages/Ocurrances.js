@@ -4,7 +4,9 @@ import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import api from '../services/api'
+import api from '../services/api';
+import * as Crypto from 'expo-crypto';
+
 export default function Ocurrances() {
     const [description, setDescription] = useState('')
     const [loader, setLoader] = useState(false);
@@ -36,12 +38,12 @@ export default function Ocurrances() {
 
     let handleSubmmit = async () => {
 
-        // let { status } = await Permissions.askAsync(Permissions.LOCATION);
-        // if (status !== 'granted') {
-        //     this.setState({
-        //         errorMessage: 'Permission to access location was denied',
-        //     });
-        // }
+        let { status } = await Permissions.askAsync(Permissions.LOCATION);
+        if (status !== 'granted') {
+            this.setState({
+                errorMessage: 'Permission to access location was denied',
+            });
+        }
 
         let location;
         const latitude = await AsyncStorage.getItem('lat');
@@ -90,7 +92,13 @@ export default function Ocurrances() {
                     Alert.alert('Sua imagem foi enviada', 'Será enviado um protocolo no seu email para que você possa acompanhar a resolução do problema');
                     setDescription('');
                     setLoader(false);
-                    console.log(result);
+                    let date = new Date().valueOf().toString();
+                    let random = (Math.random()*100).toString();
+                    let protocol = await Crypto.digestStringAsync(
+                        Crypto.CryptoDigestAlgorithm.SHA512,`${date}${random}` 
+                      );
+                    console.log(protocol);
+                    //post email
                 } else {
                     Alert.alert('Erro ao enviar imagem', 'Verifique sua conexão com a internet');
                     setDescription('');
