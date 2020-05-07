@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { View, ScrollView,SafeAreaView ,StyleSheet, Alert, TouchableOpacity, ActivityIndicator, Text, Picker, AsyncStorage, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import api from '../services/api';
-export default function TrashTime() {
+export default function TrashTime({navigation}) {
     const [city, setCity] = useState('')
     const [options, setOptions] = useState([])
     const [loader, setLoader] = useState(false);
     const [cityHours, setCityHours] = useState([]);
-
+    
     useEffect(() => {
         async function getCities() {
             try {

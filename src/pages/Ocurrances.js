@@ -19,7 +19,7 @@ export default function Ocurrances() {
     let chooseMethodToSendImage = async () => {
         Alert.alert(
             'ATENÇÃO',
-            'Por Favor escolhar um método para coletar a foto !!',
+            'Por Favor escolher um método para coletar a foto !!',
             [
                 {
                     text: 'Tirar Foto',
@@ -89,16 +89,29 @@ export default function Ocurrances() {
                 )
                 
                 if (result.status === 200) {
-                    Alert.alert('Sua imagem foi enviada', 'Será enviado um protocolo no seu email para que você possa acompanhar a resolução do problema');
-                    setDescription('');
-                    setLoader(false);
-                    let date = new Date().valueOf().toString();
-                    let random = (Math.random()*100).toString();
-                    let protocol = await Crypto.digestStringAsync(
-                        Crypto.CryptoDigestAlgorithm.SHA512,`${date}${random}` 
-                      );
-                    console.log(protocol);
-                    //post email
+                    
+                    let res = JSON.parse(result.request._response);
+                    try{
+                       let ok = await api.post('/protocolEmail', {protocol:res.protocol},  {
+                            headers:
+                            {
+                                'user': await AsyncStorage.getItem('user'),
+                                'Authorization': 'Bearer ' + await AsyncStorage.getItem('token')
+                            }
+                        })
+                        console.log(ok)
+                        if(ok.status === 200){
+                            Alert.alert('Sua imagem foi enviada', 'Será enviado um protocolo no seu email para que você possa acompanhar a resolução do problema');
+                            setDescription('');
+                            setLoader(false);
+                        }else{
+                            setLoader(false);
+                            Alert.alert('Erro ao enviar imagem', 'Verifique sua conexão com a internet');
+                        }
+                    }catch(e){
+                        console.log(e);
+                    }
+                    
                 } else {
                     Alert.alert('Erro ao enviar imagem', 'Verifique sua conexão com a internet');
                     setDescription('');

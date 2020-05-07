@@ -9,10 +9,11 @@ export default function Login({ navigation }) {
     const [password, setPassword] = useState('');
     const [loading, setLoad] = useState(false);
 
-   
+
 
     async function handleSubmit() {
         setLoad(true);
+
         try {
             const response = await api.post('/login',
                 {
@@ -28,23 +29,24 @@ export default function Login({ navigation }) {
                 const { token } = response.data
                 await AsyncStorage.setItem('user', id);
                 await AsyncStorage.setItem('token', token);
+
                 navigation.navigate('Mapa das Ocorrências');
 
 
             } else {
+                console.log(response)
                 setLoad(false);
                 Alert.alert('Ocorreu um erro no seu login, verifique sua senha ou usuário !!');
 
             }
         } catch (err) {
+            console.log('catch');
             setLoad(false);
             Alert.alert('Ocorreu um erro no seu login, verifique sua senha ou usuário !!');
 
         }
     }
-    let handleRegister = () => {
-        navigation.navigate('Registre-se');
-    }
+
     return (
 
         <KeyboardAvoidingView behavior="padding" enabled={Platform.OS} style={styles.container}>
@@ -72,13 +74,22 @@ export default function Login({ navigation }) {
             {
                 (loading === true) ? (<ActivityIndicator size="large" color="#4286f4" />) :
                     (<View>
+
                         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                             <Text style={{ color: 'white', fontSize: 20, padding: 2 }}>Login </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.transparentButton} onPress={handleRegister}>
+
+                        <TouchableOpacity style={styles.transparentButton} onPress={() => navigation.navigate('Registre-se')}>
                             <Text style={{ color: "#4286f4", fontSize: 15, padding: 2 }}
                             >
                                 Você ainda não é cadastrado ? Registre-se aqui !!
+                        </Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.transparentButton} onPress={() => navigation.navigate('Recuperação de Senha')}>
+                            <Text style={{ color: "#4286f4", fontSize: 15, padding: 2 }}
+                            >
+                                Esqueceu a sua senha ? Toque aqui !!
                         </Text>
                         </TouchableOpacity>
 

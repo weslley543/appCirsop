@@ -5,6 +5,7 @@ const Tab = createMaterialBottomTabNavigator();
 import Ocurrances from '../Ocurrances';
 import ViewOcurrances from '../ViewOcurrance'
 import TrashTime from '../TrashTime'
+import Configuration from '../Configurations'
 
 export default function BottomTab() {
     return (
@@ -16,7 +17,7 @@ export default function BottomTab() {
             headerMode="none"
             >
             
-            <Tab.Screen name='Mapa das Ocorrências' component={ViewOcurrances}
+            <Tab.Screen name='Mapa' component={ViewOcurrances}
                 options={{
                     
                     tabBarIcon: ({ color }) => (
@@ -25,7 +26,7 @@ export default function BottomTab() {
                 }}
 
             />
-            <Tab.Screen name='Enviar uma ocorrência' component={Ocurrances}
+            <Tab.Screen name='Enviar' component={Ocurrances}
             options={{
                 
                 tabBarIcon: ({ color }) => (
@@ -38,6 +39,14 @@ export default function BottomTab() {
                     
                     tabBarIcon: ({ color }) => (
                         <Icon name='clock' size={20} color={'#fafafa'} />
+                    ),
+                }}
+            />
+            <Tab.Screen name='Configurações' component={Configuration} 
+                options={{
+                    
+                    tabBarIcon: ({ color }) => (
+                        <Icon name='settings' size={20} color={'#fafafa'} />
                     ),
                 }}
             />
